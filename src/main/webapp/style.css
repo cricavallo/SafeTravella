@@ -1,0 +1,25 @@
+/* Stile di base del bottone */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #4CAF50;
+    border-radius: 5px; 
+    background-color: #4CAF50; 
+    color: white; 
+}
+
+/* Stile del bottone al passaggio del mouse */
+.btn:hover {
+    background-color: #45a049; 
+    border-color: #45a049; 
+}
+
+/* Stile del bottone quando è premuto */
+.btn:active {
+    background-color: #3e8e41; 
+    border-color: #3e8e41; 
+}
