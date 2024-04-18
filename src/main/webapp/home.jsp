@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SafeTravella</title>
-<link rel="icon" type="image/x-icon" href="img/icon.ico">
+<link rel="icon" type="image/x-icon" href="img/logo.ico">
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap">
 <style>
@@ -20,18 +20,48 @@
         padding: 0;
         font-family: 'Times New Roman', Times, serif;
     }
- 	.header-container {
-        background: rgb();
+	.header-container {
+	    background: rgb();
+	    background-size: cover;
+	    padding: 20px;
+	    text-align: center;
+	    display: flex; /* Imposta il container come flessibile */
+	    align-items: center; /* Centra verticalmente */
+	    justify-content: center; /* Centra orizzontalmente */
+	}
+	
+	.logo-container {
+	    display: flex; /* Imposta il container come flessibile */
+	    align-items: center; /* Centra verticalmente */
+	    order: 1; /* Imposta l'ordine dell'elemento */
+		width: 150px;
+		height: 150px;
+	}
+	
+	.logo-image {
+	    width: 150px; 
+	    height: 150px; 
+	    margin-left: 60px; 
+		margin-top: 10px;
+	}
+	
+	.header-container h1 {
+	    margin: 0;
+	    color: #000;
+	    font-family: 'Parisienne', cursive;
+	    font-size: 60px;
+	    order: 2; /* Imposta l'ordine dell'elemento */
+		text-align: center;
+		margin-right: 5px;
+	}
+
+    .header-container h3 {
+        margin: 0;
         background-size: cover;
         padding: 20px;
-        text-align: center;
+        text-align: left;
     }
-    .header-container h1 {
-        margin: 0;
-        color: #000;
-        font-family: 'Parisienne', cursive;
-        font-size: 60px;
-    }
+    
     #accountButton {
     	background-color: rgb(168, 168, 255); 
     	color: #fff; 
@@ -74,14 +104,16 @@
 <% 
     Utente u = (Utente)request.getSession().getAttribute("DATI_UTENTE");
     if(u != null){
-    	//if(u.getProfessione().equals(Professione.ASSISTENTE)){
-    	//Assistente ass = sc.leggiAssistente(u.getIdProfessionista());
     	
 %>
 <body>
-
+	<div class="logo-container">
+        	<img src="img/2.ico" alt="Logo" class="logo-image">
+    </div>
     <div class="header-container">
-        <h1>SafeTravella</h1>
+        	<h1>SafeTravella</h1>
+    	</div>
+ 
         <h2><button id="accountButton" onclick="location.href='account.jsp'">Account</button></h2>
 
         <nav class="button-container">

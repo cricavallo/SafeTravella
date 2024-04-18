@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>ElencoRecensioni</title>
-<link rel="icon" type="image/x-icon" href="img/icon.ico">
+<link rel="icon" type="image/x-icon" href="img/logo.ico">
 </head>
 <body>
 

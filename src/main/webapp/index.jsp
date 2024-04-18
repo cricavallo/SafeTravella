@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="backend.UtenteService" %>
+<%@ page import="backend.servlets.RecensioneService" %>
 <%@ page import="backend.Utente" %>   
  
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SafeTravella</title>
-<link rel="icon" type="image/x-icon" href="img/icon.ico">
+<link rel="icon" type="image/x-icon" href="img/logo.ico">
 <style>
 
     body {
@@ -78,8 +78,8 @@ if(n == null) {%>
 
 <%} //controllo con database
 	else { 
-    UtenteService s = new UtenteService();
-    Utente u = s.getUtente(n, pwd);
+    RecensioneService s = new RecensioneService();
+    Utente u = s.select_Utente(n, pwd);
     
     if(u == null) {
         response.sendRedirect("index.jsp");

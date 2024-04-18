@@ -2,9 +2,15 @@ package backend;
 
 public class Città {
 
+	private int id;
 	private String nome;
 	private String stato;
-	private int id;
+	
+	public Città(int id, String n, String s) {
+		this.id = id;
+		this.nome = n;
+		this.stato = s;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -23,6 +29,4 @@ public class Città {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
 }

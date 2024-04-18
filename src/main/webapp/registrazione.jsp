@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="backend.Utente" %> 
-<%@ page import="backend.UtenteService" %> 
+<%@ page import="backend.servlets.RecensioneService" %> 
 <%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Registrazione</title>
-<link rel="icon" type="image/x-icon" href="img/icon.ico">
+<link rel="icon" type="image/x-icon" href="img/logo.ico">
 <style>
     /* Cambia il font del testo */
     body {
@@ -85,8 +85,10 @@ if ("POST".equals(request.getMethod())) {
     
     // Controllo sulla data di nascita
     LocalDate dataNascita = null;
+    String dataS = null;
     try {
         dataNascita = LocalDate.parse(request.getParameter("data_nascita"));
+        dataS = String.valueOf(dataNascita);
     } catch (Exception e) {
         out.println("<h3 class='error-message'>Errore nella data di nascita!</h3>");
         out.println("</body></html>");
@@ -94,12 +96,12 @@ if ("POST".equals(request.getMethod())) {
     }
 
     // Crea un nuovo oggetto Utente
-    Utente u = new Utente(cognome, nome, email, user, pwd, nazionalita, dataNascita);
+    Utente u = new Utente(cognome, nome, email, user, pwd, nazionalita, dataS);
 
     // Salva l'utente nel database 
-    UtenteService us = new UtenteService();
+    RecensioneService rs = new RecensioneService();
     if (u != null){
-    	us.salvaUtente(u);
+    	rs.insert_UtenteRagazza(u);
     	System.out.println(u.toString());
     	response.sendRedirect("index.jsp");
     	}
