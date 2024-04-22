@@ -20,16 +20,16 @@
         padding: 0;
         font-family: 'Times New Roman', Times, serif;
     }
-	.header-container {
-	    background: rgb();
-	    background-size: cover;
-	    padding: 20px;
-	    text-align: center;
-	    display: flex; /* Imposta il container come flessibile */
-	    align-items: center; /* Centra verticalmente */
-	    justify-content: center; /* Centra orizzontalmente */
-	}
-	
+	 .header-container {
+        background: rgb();
+        background-size: cover;
+        padding-top: 0px;
+        text-align: center;
+        display: flex; /* Imposta il container come flessibile */
+        flex-direction: column; /* Imposta la direzione dei figli come colonna */
+        width: 60%; /* Riduci la larghezza */
+        margin: 0 auto; /* Centra l'header container */
+    }
 	.logo-container {
 	    display: flex; /* Imposta il container come flessibile */
 	    align-items: center; /* Centra verticalmente */
