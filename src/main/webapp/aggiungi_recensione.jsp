@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="backend.Recensione" %> 
-<%@ page import="backend.UtenteService" %> 
+<%@ page import="backend.Utente" %>
+<%@ page import="backend.Città" %> 
+<%@ page import="backend.servlets.RecensioneService" %> 
 <%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
 <html>
@@ -117,13 +119,16 @@ if ("POST".equals(request.getMethod())) {
     float voto = Float.parseFloat(request.getParameter("voto"));
     String colore = request.getParameter("colore");
     		
-    // Crea una nuova recensione
+    // gestire legame città, recensione, stato
     Recensione rc = new Recensione(data, descr, voto);
-
+    Utente u = (Utente)request.getSession().getAttribute("DATI_UTENTE");
+	Città city = new Città();
+	city.setNome(request.getParameter("città"));
+    
     // Salva la recensione nel database 
-    UtenteService us = new UtenteService();
+    RecensioneService ser = new RecensioneService();
     if (rc != null){
-    	//rc.salvaUtente(u);
+    	ser.insert_Recensione(rc, u, city);
     	System.out.println(rc.toString());
     	response.sendRedirect("home.jsp");
     	}

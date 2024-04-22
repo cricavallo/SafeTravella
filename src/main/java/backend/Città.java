@@ -6,6 +6,10 @@ public class Città {
 	private String nome;
 	private String stato;
 	
+	public Città() {
+		
+	}
+	
 	public Città(int id, String n, String s) {
 		this.id = id;
 		this.nome = n;

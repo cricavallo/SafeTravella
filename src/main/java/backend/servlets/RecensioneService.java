@@ -27,10 +27,11 @@ public class RecensioneService {
 	private static final String INSERT_UTENTE = "INSERT INTO ST_UtenteRagazza (Nome, Cognome, Email, Password, Nazionalità, DataDiNascita, Username) VALUES (?,?,?,?,?,?,?)";
 	private static final String UPDATE_UTENTE = "UPDATE ST_UtenteRagazza SET Nome = ?, Cognome = ?, Email = ?, Password = ?, Nazionalità = ?, Username = ? WHERE Id = ?";
 	private static final String DELETE_UTENTE = "DELETE FROM ST_UtenteRagazza WHERE Id = ?";
+	private Connection conn;
 	
-	//inserimento nel database della ragazza
+	//funziona
 	public void insert_UtenteRagazza(Utente u) {
-		Connection conn = null;
+		conn = null;
 		PreparedStatement stmtRag = null;
 
 		try {
@@ -39,14 +40,7 @@ public class RecensioneService {
 				conn = DriverManager.getConnection(url, user, pwd);
 				stmtRag = conn.prepareStatement(
 						"INSERT INTO ST_UtenteRagazza (Nome, Cognome, Email, Password, Nazionalità, DataDiNascita, Username) VALUES (?,?,?,?,?,?,?)");
-				/*
-				UUID uuid = UUID.randomUUID();
-		        String id = uuid.toString().replaceAll("-", "");
-		        
-		        // Estrae i primi 4 caratteri per ottenere un ID di 4 cifre
-		        id = id.substring(0, 4);
-		        u.setId(Integer.parseInt(id));
-		        */
+				
 				//3) Preparare lo statement
 				if(u.getId() > 0) {
 					stmtRag = conn.prepareStatement(UPDATE_UTENTE);
@@ -116,62 +110,63 @@ public class RecensioneService {
 		}
 	}
 	
-	//inserimento nel database della recensione
-		public void insert_Recensione(Recensione r, Utente u, Città c) {
-			Connection conn = null;
-			PreparedStatement stmtRec = null;
+	//CONTROLLA
+	public void insert_Recensione(Recensione r, Utente u, Città c) {
+		conn = null;
+		PreparedStatement stmtRec = null;
 
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			try {
-				Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				conn = DriverManager.getConnection(url, user, pwd);
+				stmtRec = conn.prepareStatement(
+						"INSERT INTO ST_Recensione (Id_Ragazza, Id_CittaEuropea, Descrizione, Voto, Data) VALUES (?,?,?,?,?)");
+
+				stmtRec.setInt(1, u.getId());
+				stmtRec.setInt(2, c.getId());
+				stmtRec.setString(3, r.getDesc());
+				stmtRec.setFloat(4, r.getVoto());
+				stmtRec.setString(5, r.getDataS());
+				
+				stmtRec.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (stmtRec != null) {
 				try {
-					conn = DriverManager.getConnection(url, user, pwd);
-					stmtRec = conn.prepareStatement(
-							"INSERT INTO ST_Recensione (Id_Ragazza, Id_CittaEuropea, Descrizione, Voto, Data) VALUES (?,?,?,?,?)");
-					
-					stmtRec.setInt(1, u.getId());
-					stmtRec.setInt(2, c.getId());
-					stmtRec.setString(3, r.getDesc());
-					stmtRec.setFloat(4, r.getVoto());
-					stmtRec.setString(5, r.getDataS());
-					
-					stmtRec.executeUpdate();
+					stmtRec.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				if (stmtRec != null) {
-					try {
-						stmtRec.close();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}
-		
-		//funziona
-		public Utente select_Utente(String username, String pwdU) {
+	}
+				
+
+	//funziona
+	public Utente select_Utente(String username, String pwdU) {
 			Utente u = null;
-			Connection conn = null;
+			conn = null;
 			PreparedStatement stmt = null;
 			ResultSet r = null;
 			try {
@@ -212,10 +207,27 @@ public class RecensioneService {
 			return u;
 		} 
 		
-		//select dei dati della città selezionata
-				public Città select_Citta(int id) {
+	
+	public void logout() {
+		 if (conn != null) {
+	            try {
+	                conn.close();
+	                System.out.println("Connessione al database chiusa correttamente.");
+	            } catch (SQLException e) {
+	               
+	                System.err.println("Errore durante la chiusura della connessione al database: " + e.getMessage());
+	            } finally {
+	                // Codice da eseguire sempre, anche in caso di eccezione
+	                conn = null; 
+	            }
+	     }
+	}
+
+	
+	//select dei dati della città selezionata
+	public Città select_Citta(int id) {
 					Città c = null;
-					Connection conn = null;
+					conn = null;
 					PreparedStatement stmt = null;
 					ResultSet r = null;
 					try {
@@ -251,4 +263,145 @@ public class RecensioneService {
 						}
 					return c;
 				} 		
+
+
+	//select elenco delle recensioni inserite in database
+	/*public ElencoRecensioni select_Recensioni() {
+		Utente u = null;
+		ElencoRecensioni elencoR = new ElencoRecensioni();
+		conn = null;
+		PreparedStatement stmt = null;
+		ResultSet r = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(url, user, pwd);
+			stmt = conn.prepareStatement("SELECT * FROM ST_Recensione");
+			
+			r = stmt.executeQuery();
+			while(r.next()) {
+				int idU = r.getInt("Id_Ragazza");
+				String descr = r.getNString("Descrizione");
+				int voto = r.getInt("Voto");
+				String data = r.getNString("Data");
+				u = this.Select_Utente1(idU);
+				Recensione re = new Recensione(descr, voto, data);
+				re.setU(u);
+				elencoR.add(re);
+			}} catch (Exception e) {
+
+			} finally {
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		return elencoR;
+	} 
+	*/
+	
+	
+	//select dati della ragazza dato id, controlla
+	public Utente Select_Utente1(int id) {
+		Utente u = null;
+		conn = null;
+		PreparedStatement stmt = null;
+		ResultSet r = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(url, user, pwd);
+			stmt = conn.prepareStatement("SELECT * FROM ST_UtenteRagazza WHERE Id = ? ");
+			
+			r = stmt.executeQuery();
+			while(r.next()) {
+				String c = r.getString("Cognome");
+				String n = r.getString("Nome");
+				String e = r.getString("Email");
+				String nz = r.getString("Nazionalità");
+				String d = r.getString("DataDiNascita");
+				String username = r.getString("Username");
+				String pwdU = r.getString("Password");
+				u = new Utente(c, n, e, username, pwdU, nz, d);
+			}} catch (Exception e) {
+
+			} finally {
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		return u;
+	} 
+
+
+
+	//select elenco delle recensioni di una determinata città inserita in database
+	/*public ElencoRecensioni select_RecensioniCitta(Città c) {
+		Utente u = null;
+		ElencoRecensioni elencoR = new ElencoRecensioni();
+		conn = null;
+		PreparedStatement stmt = null;
+		ResultSet r = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(url, user, pwd);
+			stmt = conn.prepareStatement("SELECT * FROM ST_Recensione WHERE Id_CittaEuropea = ?");
+			stmt.setInt(1, c.getId());
+			
+			r = stmt.executeQuery();
+			while(r.next()) {
+				int idU = r.getInt("Id_Ragazza");
+				String descr = r.getNString("Descrizione");
+				int voto = r.getInt("Voto");
+				String data = r.getNString("Data");
+				u = this.select_Utente1(idU);
+				Recensione re = new Recensione(descr, voto, data);
+				re.setU(u);
+				elencoR.add(re);
+			}} catch (Exception e) {
+
+			} finally {
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		return elencoR;
+	} 
+	*/
 }
