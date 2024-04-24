@@ -23,14 +23,15 @@
         }
 
         nav {
-            background-color: #4CAF50;
+            background-color: rgb(255, 15, 135);
             overflow: hidden;
             text-align: center;
-            margin-bottom: 20px; /* Aggiungi spazio inferiore */
+            margin-bottom: 20px; 
+            height: 70px;
         }
 
         button {
-            background-color: green; /* colore verde */
+            background-color: rgb(255, 181, 218); 
             border: none;
             color: white;
             padding: 14px 20px;
@@ -40,11 +41,12 @@
             font-size: 16px;
             border-radius: 12px; /* bordi arrotondati */
             cursor: pointer;
+            margin-top: 13px;
             margin-right: 10px; /* margine a destra per separare i pulsanti */
         }
 
         button:hover {
-            background-color: #3e8e41; /* sfumatura verde più scuro al passaggio del mouse */
+            background-color: rgb(255, 128, 192); /* sfumatura al passaggio del mouse */
         }
 
         table {
@@ -60,7 +62,7 @@
         }
 
         th {
-            background-color: #4CAF50;
+            background-color: rgb(255, 15, 135);
             color: white;
         }
 

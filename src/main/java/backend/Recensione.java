@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Recensione {
 	
+	private Utente u;
+	private Citta c;
 	private LocalDate data;
 	private String dataS;
 	private String desc;
@@ -52,6 +54,24 @@ public class Recensione {
 	}
 	public void setDataS(String dataS) {
 		this.dataS = dataS;
+	}
+	public Utente getU() {
+		return u;
+	}
+	public void setU(Utente u) {
+		this.u = u;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Citta getC() {
+		return c;
+	}
+	public void setC(Citta c) {
+		this.c = c;
 	}
 	
 

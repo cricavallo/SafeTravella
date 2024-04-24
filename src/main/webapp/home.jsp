@@ -49,7 +49,7 @@
 	    margin: 0;
 	    color: #000;
 	    font-family: 'Parisienne', cursive;
-	    font-size: 60px;
+	    font-size: 100px;
 	    order: 2; /* Imposta l'ordine dell'elemento */
 		text-align: center;
 		margin-right: 5px;
@@ -68,10 +68,10 @@
     	border-radius: 5px; 
     	border: none; 
     	padding: 10px 20px; 
-    	font-size: 16px; 
+    	font-size: 18px; 
     	position: absolute; 
-    	top: 40px; /* Distanza dal top */
-    	right: 50px; /* Distanza dalla destra */
+    	top: 70px; /* Distanza dal top */
+    	right: 60px; /* Distanza dalla destra */
     	cursor: pointer;
 	}
 	
@@ -120,7 +120,7 @@
             <button onclick="location.href='aggiungi_recensione.jsp'">Aggiungi Recensione</button>
             <button onclick="location.href='elenco_recensioni.jsp'">Elenco Recensioni</button>
             <button onclick="location.href='ricerca_citta.jsp'">Ricerca Città</button>
-        	<button onclick="location.href='stato.jsp'">Stato</button>
+        	<button onclick="location.href='stato.jsp'">Cerca stato</button>
         </nav>
     </div>
 

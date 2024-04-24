@@ -19,7 +19,6 @@
         margin: 0;
         padding: 0;
     }
-    
     .container {
         max-width: 600px;
         margin: 20px auto;
@@ -27,8 +26,17 @@
         background-color: rgb(255, 181, 218);
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
     }
-    
+
+	img {
+    	position: absolute;
+    	bottom: 0;
+    	left: 0;
+    	z-index: -1;
+    	width: 100%;
+    	height: 100%;
+	}
     h2 {
         text-align: left;
     }
@@ -74,10 +82,11 @@
 </head>
 <body>
 <%	RecensioneService rs = new RecensioneService(); %>
+<img src="img/back2.jpg">
 <div class="container">
     <h2>Aggiungi Recensione</h2>
     <h3></h3>
-
+	<label>Città:</label>
     <form action="aggiungi_recensione.jsp" method="post">
     	<select name="Citta">
     	<%		
@@ -93,8 +102,8 @@
     		%>
    
         </select>
-        <label>Data:</label>
-        <input type="date" name="data" required><br>
+        <label>Data del viaggio:</label>
+        <input type="date" name="data" required max="<%= LocalDate.now() %>"><br>
         
         <label>Descrizione:</label>
         <textarea name="descrizione" rows="5" required></textarea><br>
@@ -141,5 +150,6 @@ if ("POST".equals(request.getMethod())) {
 	}
 
 %>
+	
 </body>
 </html>

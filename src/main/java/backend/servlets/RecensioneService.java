@@ -352,8 +352,9 @@ public class RecensioneService {
 	} 
 
 	//select elenco delle recensioni inserite in database
-	/*public ElencoRecensioni select_Recensioni() {
+	public ElencoRecensioni select_Recensioni() {
 		Utente u = null;
+		Citta c = null;
 		ElencoRecensioni elencoR = new ElencoRecensioni();
 		conn = null;
 		PreparedStatement stmt = null;
@@ -366,12 +367,15 @@ public class RecensioneService {
 			r = stmt.executeQuery();
 			while(r.next()) {
 				int idU = r.getInt("Id_Ragazza");
+				int idC = r.getInt("Id_CittaEuropea");
 				String descr = r.getNString("Descrizione");
 				int voto = r.getInt("Voto");
 				String data = r.getNString("Data");
 				u = this.Select_Utente1(idU);
+				c = this.select_Città1(idC);
 				Recensione re = new Recensione(descr, voto, data);
-				re.setUser(u);
+				re.setU(u);
+				re.setC(c);
 				elencoR.add(re);
 			}} catch (Exception e) {
 
@@ -395,7 +399,6 @@ public class RecensioneService {
 			}
 		return elencoR;
 	} 
-	*/
 	
 	
 	//select dati della ragazza dato id, controlla
