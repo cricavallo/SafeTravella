@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="backend.Recensione" %> 
 <%@ page import="backend.Utente" %>
-<%@ page import="backend.Città" %> 
+<%@ page import="backend.Citta" %> 
+<%@ page import="backend.ElencoCitta" %> 
 <%@ page import="backend.servlets.RecensioneService" %> 
 <%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
@@ -72,21 +73,26 @@
 </style>
 </head>
 <body>
-
+<%	RecensioneService rs = new RecensioneService(); %>
 <div class="container">
     <h2>Aggiungi Recensione</h2>
     <h3></h3>
 
     <form action="aggiungi_recensione.jsp" method="post">
-    	<label>Città:</label>
-        <select name="città">
-        	<option value="Amsterdam">Amsterdam</option>
-            <option value="Andorra La Vella">Andorra La Vella</option>
-            <option value="Ankara">Ankara</option>
-            
-            
-        </select><br>
-        
+    	<select name="Citta">
+    	<%		
+    		ElencoCitta ec = null;
+    		ec = rs.select_Citta();
+    		for(Citta c : ec){
+    			%>
+    			<option value="<%=c.getNome()%>">
+    			<%=c.getNome()%>
+    			</option>
+    			<%
+    		}
+    		%>
+   
+        </select>
         <label>Data:</label>
         <input type="date" name="data" required><br>
         
@@ -94,8 +100,7 @@
         <textarea name="descrizione" rows="5" required></textarea><br>
         
         <label>Voto:</label>
-        <input type="number" name="voto" required min="0" max="10" step="0.5"><br>
-        
+        <input type="number" name="voto" required min="0" max="10" step="0.5"><br> 
         
         <input type="submit" value="Conferma">
     </form>
@@ -103,36 +108,38 @@
 
 
 <%
-// Verifica se la richiesta è una richiesta POST
+Utente u = (Utente)request.getSession().getAttribute("DATI_UTENTE");
+Citta city = null;
+Recensione rc = null;
 if ("POST".equals(request.getMethod())) {
-    // Prendi i valori dai parametri della richiesta
-    // Controllo sulla data del viaggio
-    LocalDate data = null;
-    try {
-        data = LocalDate.parse(request.getParameter("data"));
-    } catch (Exception e) {
-        out.println("<h3 class='error-message'>Errore nella data del viaggio!</h3>");
-        out.println("</body></html>");
-        return;
-    }
+	// Controllo sulla data di nascita
+	LocalDate dataViaggio = null;
+	String dataV = null;
+	try {
+    	dataViaggio = LocalDate.parse(request.getParameter("data"));
+    	dataV = String.valueOf(dataViaggio);
+	} catch (Exception e) {
+		out.println("<h3 class='error-message'>Errore nella data di nascita!</h3>");
+    	out.println("</body></html>");
+    	return;
+	}
+
     String descr = request.getParameter("descrizione");
     float voto = Float.parseFloat(request.getParameter("voto"));
-    String colore = request.getParameter("colore");
     		
-    // gestire legame città, recensione, stato
-    Recensione rc = new Recensione(data, descr, voto);
-    Utente u = (Utente)request.getSession().getAttribute("DATI_UTENTE");
-	Città city = new Città();
-	city.setNome(request.getParameter("città"));
+    rc = new Recensione(descr, voto, dataV);
     
-    // Salva la recensione nel database 
-    RecensioneService ser = new RecensioneService();
+	String nomeC = request.getParameter("Citta");
+	System.out.println(nomeC);
+	city = rs.select_Citta(nomeC);
+    //System.out.println(city.toString());
     if (rc != null){
-    	ser.insert_Recensione(rc, u, city);
-    	System.out.println(rc.toString());
+    	rs.insert_Recensione(rc, u, city);
+    	//System.out.println(rc.toString());
     	response.sendRedirect("home.jsp");
     	}
 	}
+
 %>
 </body>
 </html>

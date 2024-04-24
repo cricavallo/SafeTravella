@@ -21,11 +21,12 @@ public class Recensione {
 	public String toString() {
 		return "Recensione [data=" + data + ", desc=" + desc + ", voto=" + voto + "]";
 	}
-	public Recensione(String d, int v, String da) {
+	
+	public Recensione(String d, float v, String dataS) {
 		this.desc = d;
 		this.voto = v;
-		this.dataS = da;
-		this.data = LocalDate.parse(da, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+		this.dataS = dataS;
+		this.data = LocalDate.parse(dataS, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 	
 	public LocalDate getData() {

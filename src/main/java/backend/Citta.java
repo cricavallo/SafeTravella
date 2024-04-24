@@ -1,16 +1,16 @@
 package backend;
 
-public class Città {
+public class Citta {
 
 	private int id;
 	private String nome;
 	private String stato;
 	
-	public Città() {
+	public Citta() {
 		
 	}
 	
-	public Città(int id, String n, String s) {
+	public Citta(int id, String n, String s) {
 		this.id = id;
 		this.nome = n;
 		this.stato = s;
@@ -33,4 +33,11 @@ public class Città {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		return "Città [id=" + id + ", nome=" + nome + ", stato=" + stato + "]";
+	}
+	
+	
 }

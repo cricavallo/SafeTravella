@@ -49,7 +49,7 @@
 
         table {
             width: 60%;
-            margin: 20px auto;
+            margin: 50px auto;
             border-collapse: collapse;
         }
 
