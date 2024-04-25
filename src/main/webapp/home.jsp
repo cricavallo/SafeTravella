@@ -68,7 +68,7 @@
     	border-radius: 5px; 
     	border: none; 
     	padding: 10px 20px; 
-    	font-size: 18px; 
+    	font-size: 16px; 
     	position: absolute; 
     	top: 70px; /* Distanza dal top */
     	right: 60px; /* Distanza dalla destra */
@@ -122,8 +122,6 @@
             <button onclick="location.href='ricerca_citta.jsp'">Ricerca Città</button>
         	<button onclick="location.href='stato.jsp'">Cerca stato</button>
         </nav>
-    </div>
-
     <div class="panel">
         <h2>Benvenuta <%=u.getNome()+" "+u.getCognome() %></h2>
     </div>
