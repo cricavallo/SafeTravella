@@ -120,7 +120,7 @@
             <button onclick="location.href='aggiungi_recensione.jsp'">Aggiungi Recensione</button>
             <button onclick="location.href='elenco_recensioni.jsp'">Elenco Recensioni</button>
             <button onclick="location.href='ricerca_citta.jsp'">Ricerca Città</button>
-        	<button onclick="location.href='stato.jsp'">Cerca stato</button>
+        	<button onclick="location.href='recensioni_account.jsp'">Le tue recensioni</button>
         </nav>
     <div class="panel">
         <h2>Benvenuta <%=u.getNome()+" "+u.getCognome() %></h2>
