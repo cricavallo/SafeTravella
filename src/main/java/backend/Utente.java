@@ -50,6 +50,9 @@ public class Utente {
 		return "Utente [cognome=" + cognome + ", nome=" + nome + ", email=" + email + ", user=" + user + ", pwd=" + pwd
 				+ ", nazionalità=" + nazionalità + ", dataNascitaS=" + dataNascita + "]";
 	}
+	public String view() {
+		return "Utente [cognome=" + cognome + ", nome=" + nome + "]";
+	}
 
 	public String getNazionalità() {
 		return nazionalità;
