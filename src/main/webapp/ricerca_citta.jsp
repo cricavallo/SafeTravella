@@ -30,7 +30,7 @@
 
     /* Aggiungi stile al bottone di submit */
     input[type="submit"] {
-        width: calc(30% - 12px);
+        width: calc(20% - 12px);
         padding: 10px;
         margin-top: 10px; /* Aggiungi margine superiore */
         border: none;
@@ -150,7 +150,7 @@
         </select>
         <input type="submit" value="Conferma">
     </form>
-	
+	<div class="container">
      <% 
      	ElencoRecensioni elencoRecensioni = null;
      	String nomeC = request.getParameter("Citta");
@@ -169,6 +169,6 @@
 	        <p>Data: <%= recensione.getData() %></p>                           
         </div>
     <%}%>
-    
+    </div>
 </body>
 </html>

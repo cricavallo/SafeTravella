@@ -118,6 +118,7 @@
 
 <%
 Utente u = (Utente)request.getSession().getAttribute("DATI_UTENTE");
+System.out.println(u.toString());
 Citta city = null;
 Recensione rc = null;
 if ("POST".equals(request.getMethod())) {
@@ -135,12 +136,12 @@ if ("POST".equals(request.getMethod())) {
 
     String descr = request.getParameter("descrizione");
     float voto = Float.parseFloat(request.getParameter("voto"));
-    		
     rc = new Recensione(descr, voto, dataV);
-    
+    rc.setU(u);
 	String nomeC = request.getParameter("Citta");
 	System.out.println(nomeC);
 	city = rs.select_Citta(nomeC);
+	rc.setC(city);
     //System.out.println(city.toString());
     if (rc != null){
     	rs.insert_Recensione(rc, u, city);

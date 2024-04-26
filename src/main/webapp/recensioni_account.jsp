@@ -24,24 +24,51 @@
     	background: white;
         padding: 50px;
         text-align: center;
-        color: hotpink;
+        color: lightpink;
+        font-size: 25px;
         position: relative;
+        margin-bottom: 20px; 
     }
-    .recensione { 
-        background-color: white; 
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 20px;
+    .container {
+	    display: flex;
+	    flex-wrap: wrap;
+	    justify-content: space-between;
+	}
+	
+	.recensione {
+	    width: calc(33.33% - 20px);
+	    background-color: lightpink; 
+	    border-radius: 10px;
+	    padding: 20px;
+	    margin-bottom: 20px;
+	    box-sizing: border-box; /* Assicura che il padding e il margine non aumentino la larghezza */
+	    margin-left: 20px;
+	    
+	}
+	
+	/* Media query per schermi di dimensioni medie */
+	@media (max-width: 992px) {
+	    .recensione {
+	        width: calc(50% - 20px);
+	    }
+	}
+	
+	/* Media query per schermi di dimensioni piccole */
+	@media (max-width: 600px) {
+	    .recensione {
+	        width: calc(100% - 20px);
+	    }
+	}
+     .recensione h2 {	/si preoccupa dell'intestazione h2'/
+	    color: black; 
      }
-     .recensione h2 {	
-	    color: hotpink; 
+     .recensione p {	/testo della recensione/
+        color: black; 
+        font-size: 18px;
      }
-     .recensione p {	
-        color: #333; /* Nero */
-     }
-     img {
+    img {
         width: 100%; /* 100% della larghezza del suo contenitore*/ 
-        height: auto; 	
+        height: auto; 	/adatta automaticamente l'altezza in proporzione al contenitore/
     	border-radius: 110px;
     }
     .logo-container {
@@ -74,13 +101,13 @@
             <h1>Le tue recensioni</h1>
         </div>
     </div>
-	
+	<div class="container">
      <% 
      	Utente u = (Utente)request.getSession().getAttribute("DATI_UTENTE");
      	RecensioneService rs = new RecensioneService(); 
      	ElencoRecensioni elencoRecensioni = null;
      	elencoRecensioni = rs.Select_RecensioniUtente(u); 
-     	System.out.println(elencoRecensioni.toString());
+     	//System.out.println(elencoRecensioni.toString());
      	     	
         for(Recensione recensione : elencoRecensioni) {
     	%>
@@ -91,6 +118,6 @@
 	                <p>Data: <%= recensione.getData() %></p>                              
         </div>
     <%}%>
-    
+     </div>
 </body>
 </html>
