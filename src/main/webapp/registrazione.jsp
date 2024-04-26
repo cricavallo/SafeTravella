@@ -66,7 +66,7 @@
         <label for="nazionalita">Nazionalità:</label><br/>
         <input type="text" name="nazionalita" required style="width: 300px;"/><br/><br/>
         <label for="data_nascita">Data di nascita:</label><br/>
-        <input type="date" name="data_nascita" required style="width: 300px;"/><br/><br/>
+        <input type="date" name="data_nascita" required max="<%= LocalDate.now() %>" style="width: 300px;"/><br/><br/>
         <input type="submit" value="Registrati" class="btn"/>
     </div>
 </form>

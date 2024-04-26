@@ -31,7 +31,7 @@ public class RecensioneService {
 	private static final String DELETE_UTENTE = "DELETE FROM ST_UtenteRagazza WHERE Id = ?";
 	private Connection conn;
 	
-	//funziona
+	//FUNZIONA
 	public void insert_UtenteRagazza(Utente u) {
 		conn = null;
 		PreparedStatement stmtRag = null;
@@ -113,7 +113,7 @@ public class RecensioneService {
 	}
 	
 	
-	//CONTROLLA
+	//FUNZIONA
 	public void insert_Recensione(Recensione r, Utente u, Citta c) {
 		conn = null;
 		PreparedStatement stmtRec = null;
@@ -166,7 +166,7 @@ public class RecensioneService {
 	}
 			
 	
-	//funziona
+	//FUNZIONA
 	public Citta select_Citta(String nome) {
 			Citta c = null;
 			conn = null;
@@ -206,7 +206,7 @@ public class RecensioneService {
 				}
 			return c;
 		} 
-		
+	//FUNZIONA
 	public Utente select_Utente(String username, String pwdU) {
 		Utente u = null;
 		conn = null;
@@ -252,7 +252,7 @@ public class RecensioneService {
 		return u;
 	} 
 	
-
+	//FUNZIONA
 	public void logout() {
 		 if (conn != null) {
 	            try {
@@ -269,7 +269,7 @@ public class RecensioneService {
 	}
 
 	
-	//select dei dati della città selezionata
+	//select dei dati della città selezionata, CONTROLLA
 	public Citta select_Città1(int id) {
 					Citta c = null;
 					conn = null;
@@ -283,11 +283,11 @@ public class RecensioneService {
 						
 						r = stmt.executeQuery();
 						while(r.next()) {
-							String nomeC = r.getNString("Nome");
+							String nomeC = r.getString("Nome");
 							String statoC = r.getString("Stato");
 							c = new Citta(id, nomeC, statoC);
 						}} catch (Exception e) {
-
+							e.getStackTrace();
 						} finally {
 							if (stmt != null) {
 								try {
@@ -308,7 +308,7 @@ public class RecensioneService {
 						}
 					return c;
 				} 		
-
+	//FUNZIONA
 	public ElencoCitta select_Citta() {
 		Citta c = null;
 		ElencoCitta ec = new ElencoCitta();
@@ -351,7 +351,7 @@ public class RecensioneService {
 		return ec;
 	} 
 
-	//select elenco delle recensioni inserite in database
+	//select elenco delle recensioni inserite in database, CONTROLLA
 	public ElencoRecensioni select_Recensioni() {
 		Utente u = null;
 		Citta c = null;
@@ -368,11 +368,105 @@ public class RecensioneService {
 			while(r.next()) {
 				int idU = r.getInt("Id_Ragazza");
 				int idC = r.getInt("Id_CittaEuropea");
-				String descr = r.getNString("Descrizione");
-				int voto = r.getInt("Voto");
-				String data = r.getNString("Data");
-				u = this.Select_Utente1(idU);
-				c = this.select_Città1(idC);
+				String descr = r.getString("Descrizione");
+				float voto = r.getFloat("Voto");
+				String data = r.getString("Data");
+				u = select_Utente1(idU);
+				c = select_Città1(idC);
+				Recensione re = new Recensione(descr, voto, data);
+				re.setU(u);
+				re.setC(c);
+				elencoR.add(re);
+			}} catch (Exception e) {
+				e.getStackTrace();
+			} finally {
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		return elencoR;
+	} 
+	
+	
+	//select dati della ragazza dato id, controlla
+	public Utente select_Utente1(int id) {
+		Utente u = null;
+		conn = null;
+		PreparedStatement stmt = null;
+		ResultSet r = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(url, user, pwd);
+			stmt = conn.prepareStatement("SELECT * FROM ST_UtenteRagazza WHERE Id = ? ");
+			
+			r = stmt.executeQuery();
+			while(r.next()) {
+				String n = r.getString("Nome");
+				String c = r.getString("Cognome");
+				String e = r.getString("Email");
+				String pwdU = r.getString("Password");
+				String nz = r.getString("Nazionalità");
+				String d = r.getString("DataDiNascita");
+				String username = r.getString("Username");
+				
+				u = new Utente(c, n, e, username, pwdU, nz, d);
+			}} catch (Exception e) {
+
+			} finally {
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		return u;
+	} 
+
+	public ElencoRecensioni select_recensioni_dato_Utente(Utente u) {
+		Citta c = null;
+		ElencoRecensioni elencoR = new ElencoRecensioni();
+		conn = null;
+		PreparedStatement stmt = null;
+		ResultSet r = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(url, user, pwd);
+			stmt = conn.prepareStatement("SELECT * FROM ST_Recensione WHERE Id_Ragazza = ?");
+			stmt.setInt(1, c.getId());
+			
+			r = stmt.executeQuery();
+			while(r.next()) {
+				int idU = r.getInt("Id_Ragazza");
+				int idC = r.getInt("Id_CittaEuropea");
+				String descr = r.getString("Descrizione");
+				float voto = r.getFloat("Voto");
+				String data = r.getString("Data");
+				u = select_Utente1(idU);
+				c = select_Città1(idC);
 				Recensione re = new Recensione(descr, voto, data);
 				re.setU(u);
 				re.setC(c);
@@ -399,55 +493,8 @@ public class RecensioneService {
 			}
 		return elencoR;
 	} 
-	
-	
-	//select dati della ragazza dato id, controlla
-	public Utente Select_Utente1(int id) {
-		Utente u = null;
-		conn = null;
-		PreparedStatement stmt = null;
-		ResultSet r = null;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			conn = DriverManager.getConnection(url, user, pwd);
-			stmt = conn.prepareStatement("SELECT * FROM ST_UtenteRagazza WHERE Id = ? ");
-			
-			r = stmt.executeQuery();
-			while(r.next()) {
-				String c = r.getString("Cognome");
-				String n = r.getString("Nome");
-				String e = r.getString("Email");
-				String nz = r.getString("Nazionalità");
-				String d = r.getString("DataDiNascita");
-				String username = r.getString("Username");
-				String pwdU = r.getString("Password");
-				u = new Utente(c, n, e, username, pwdU, nz, d);
-			}} catch (Exception e) {
 
-			} finally {
-				if (stmt != null) {
-					try {
-						stmt.close();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		return u;
-	} 
-
-
-
-	//select elenco delle recensioni di una determinata città inserita in database
+	//select elenco delle recensioni di una determinata città inserita in database, CONTROLLA
 	/*public ElencoRecensioni select_RecensioniCitta(Città c) {
 		Utente u = null;
 		ElencoRecensioni elencoR = new ElencoRecensioni();
@@ -493,4 +540,11 @@ public class RecensioneService {
 		return elencoR;
 	} 
 	*/
+	
+	/*
+	public static void main(String[] args) {
+		RecensioneService rs = new RecensioneService();
+		ElencoRecensioni el = rs.select_Recensioni();
+		System.out.println(el.toString());		
+	}*/
 }

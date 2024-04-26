@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Recensioni_account</title>
+<title>Recensioni account</title>
 <link rel="icon" type="image/x-icon" href="img/logo.ico">
 </head>
 <body>
