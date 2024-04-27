@@ -112,10 +112,10 @@
         for(Recensione recensione : elencoRecensioni) {
     	%>
     	<div class="recensione">        	   	
-	                <p>Citta:<%= recensione.getC() %></p>
-	                <p>Descrizione:<%= recensione.getDesc() %></p>
-	                <p>Voto: <%= recensione.getVoto() %></p>
-	                <p>Data: <%= recensione.getData() %></p>                              
+	                <p>Citta':<%=" "+recensione.getC().getNome()%></p>
+	                <p>Descrizione:<%=" "+recensione.getDesc() %></p>
+	                <p>Voto: <%=" "+recensione.getVoto() %></p>
+	                <p>Data: <%=" "+recensione.getData() %></p>                              
         </div>
     <%}%>
      </div>

@@ -89,16 +89,16 @@
 	        width: calc(100% - 20px);
 	    }
 	}
-     .recensione h2 {	/si preoccupa dell'intestazione h2'/
+     .recensione h2 {	
 	    color: black; 
      }
-     .recensione p {	/testo della recensione/
+     .recensione p {	
         color: black; 
         font-size: 18px;
      }
     img {
         width: 100%; /* 100% della larghezza del suo contenitore*/ 
-        height: auto; 	/adatta automaticamente l'altezza in proporzione al contenitore/
+        height: auto; 	
     	border-radius: 110px;
     }
     .logo-container {
@@ -163,7 +163,7 @@
         	Utente u = recensione.getU();
     	%>
     	<div class="recensione">        	   	
-	    	<p>Utente:<%= recensione.getU()%></p>
+	    	<p>Utente:<%= recensione.getU().getNome()+" "%><%= recensione.getU().getCognome()%></p>
 	        <p>Descrizione:<%= recensione.getDesc()%></p>
 	        <p>Voto: <%= recensione.getVoto() %></p>
 	        <p>Data: <%= recensione.getData() %></p>                           

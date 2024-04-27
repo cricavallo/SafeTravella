@@ -114,7 +114,7 @@ public class RecensioneService {
 	
 	
 	//FUNZIONA
-	public void insert_Recensione(Recensione r, Utente u, Citta c) {
+	public void insert_Recensione(Recensione r, Citta c) {
 		conn = null;
 		PreparedStatement stmtRec = null;
 
@@ -125,7 +125,7 @@ public class RecensioneService {
 				stmtRec = conn.prepareStatement(
 						"INSERT INTO ST_Recensione (Id_Ragazza, Id_CittaEuropea, Descrizione, Voto, Data) VALUES (?,?,?,?,?)");
 
-				stmtRec.setInt(1, u.getId());
+				stmtRec.setInt(1, r.getU().getId());
 				stmtRec.setInt(2, c.getId());
 				stmtRec.setString(3, r.getDesc());
 				stmtRec.setFloat(4, r.getVoto());
@@ -367,11 +367,12 @@ public class RecensioneService {
 			r = stmt.executeQuery();
 			while(r.next()) {
 				int idU = r.getInt("Id_Ragazza");
+				u = select_Utente1(idU);
 				int idC = r.getInt("Id_CittaEuropea");
 				String descr = r.getString("Descrizione");
 				float voto = r.getFloat("Voto");
 				String data = r.getString("Data");
-				u = select_Utente1(idU);
+				
 				c = select_Citta1(idC);
 				Recensione re = new Recensione(descr, voto, data);
 				re.setU(u);
@@ -411,21 +412,20 @@ public class RecensioneService {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(url, user, pwd);
 			stmt = conn.prepareStatement("SELECT * FROM ST_UtenteRagazza WHERE Id = ? ");
-			
+			stmt.setInt(1, id);
 			r = stmt.executeQuery();
 			while(r.next()) {
 				String n = r.getString("Nome");
 				String c = r.getString("Cognome");
 				String e = r.getString("Email");
-				String username = r.getString("Username");
 				String pwdU = r.getString("Password");
 				String nz = r.getString("Nazionalità");
 				String d = r.getString("DataDiNascita");
-				
+				String username = r.getString("Username");
 
 				u = new Utente(c, n, e, username, pwdU, nz, d);
 			}} catch (Exception e) {
-
+				e.getStackTrace();
 			} finally {
 				if (stmt != null) {
 					try {
@@ -544,9 +544,8 @@ public class RecensioneService {
 	
 	public static void main(String[] args) {
 		RecensioneService rs = new RecensioneService();
-		Citta c = new Citta(6, "Berlino", "Germania");
-		System.out.println(c.toString());
-		ElencoRecensioni rec = rs.select_RecensioniCitta(c);
-		System.out.println(rec.toString());		
+		Utente u = null;
+		u = rs.select_Utente1(4252);
+		System.out.println(u.toString());		
 	}
 }

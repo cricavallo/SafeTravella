@@ -107,11 +107,13 @@
      	RecensioneService rs = new RecensioneService(); 
      	ElencoRecensioni elencoRecensioni = null;
      	elencoRecensioni = rs.select_Recensioni(); 
-     	     	
+     	Utente u = null;
         for(Recensione recensione : elencoRecensioni) {
+        	u = recensione.getU();
     	%>
+    	
     	<div class="recensione">        	   	
-	    			<h2><%= recensione.getU()%>, <%= recensione.getC().getNome()%></h2>   
+	    			<h2><%= u.getNome()+" "%><%= u.getCognome()%>, <%= recensione.getC().getNome()%></h2>   
 	    			<h2><%= recensione.getVoto() %></h2>	
 	    			<p>Data  <%= recensione.getData() %></p> 		
 	                <p><%= recensione.getDesc() %></p>

@@ -117,12 +117,13 @@
 
 
 <%
-Utente u = (Utente)request.getSession().getAttribute("DATI_UTENTE");
-System.out.println(u.toString());
-Citta city = null;
-Recensione rc = null;
 if ("POST".equals(request.getMethod())) {
 	// Controllo sulla data di nascita
+	Utente u = (Utente)request.getSession().getAttribute("DATI_UTENTE");
+	Citta city = null;
+	Recensione rc = new Recensione();
+	rc.setU(u);
+	//System.out.println(rc.getU().toString());
 	LocalDate dataViaggio = null;
 	String dataV = null;
 	try {
@@ -136,16 +137,16 @@ if ("POST".equals(request.getMethod())) {
 
     String descr = request.getParameter("descrizione");
     float voto = Float.parseFloat(request.getParameter("voto"));
-    rc = new Recensione(descr, voto, dataV);
-    rc.setU(u);
+    rc.setDesc(descr);
+    rc.setVoto(voto);
+    rc.setDataS(dataV);
+
+    //System.out.println(rc.getU().toString());
 	String nomeC = request.getParameter("Citta");
-	System.out.println(nomeC);
 	city = rs.select_Citta(nomeC);
 	rc.setC(city);
-    //System.out.println(city.toString());
     if (rc != null){
-    	rs.insert_Recensione(rc, u, city);
-    	//System.out.println(rc.toString());
+    	rs.insert_Recensione(rc, city);
     	response.sendRedirect("home.jsp");
     	}
 	}

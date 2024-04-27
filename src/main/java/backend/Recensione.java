@@ -31,6 +31,9 @@ public class Recensione {
 		this.data = LocalDate.parse(dataS, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 	
+	public Recensione() {
+		super();
+	}
 	public LocalDate getData() {
 		return data;
 	}
