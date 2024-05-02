@@ -84,7 +84,7 @@
 <%	RecensioneService rs = new RecensioneService(); %>
 <img src="img/back2.jpg">
 <div class="container">
-    <h2>Aggiungi Recensione</h2>
+    <h2>Aggiungi recensione</h2>
     <h3></h3>
 	<label>Città:</label>
     <form action="aggiungi_recensione.jsp" method="post">
@@ -123,7 +123,6 @@ if ("POST".equals(request.getMethod())) {
 	Citta city = null;
 	Recensione rc = new Recensione();
 	rc.setU(u);
-	//System.out.println(rc.getU().toString());
 	LocalDate dataViaggio = null;
 	String dataV = null;
 	try {
@@ -141,7 +140,6 @@ if ("POST".equals(request.getMethod())) {
     rc.setVoto(voto);
     rc.setDataS(dataV);
 
-    //System.out.println(rc.getU().toString());
 	String nomeC = request.getParameter("Citta");
 	city = rs.select_Citta(nomeC);
 	rc.setC(city);
@@ -150,7 +148,6 @@ if ("POST".equals(request.getMethod())) {
     	response.sendRedirect("home.jsp");
     	}
 	}
-
 %>
 	
 </body>

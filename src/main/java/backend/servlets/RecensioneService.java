@@ -541,11 +541,11 @@ public class RecensioneService {
 			}
 		return elencoR;
 	} 
-	
+	/*
 	public static void main(String[] args) {
 		RecensioneService rs = new RecensioneService();
 		Utente u = null;
 		u = rs.select_Utente1(4252);
 		System.out.println(u.toString());		
-	}
+	}*/
 }

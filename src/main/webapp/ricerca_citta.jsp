@@ -26,6 +26,7 @@
         background-color: #f8f8f8; /* Colore di sfondo leggermente diverso */
         font-size: 16px; /* Dimensione del testo */
         color: #555; /* Colore del testo */
+        margin-left: 20px;
     }
 
     /* Aggiungi stile al bottone di submit */
@@ -120,6 +121,16 @@
         align-items: center;
         justify-content: center; /* Centra il contenuto orizzontalmente */
     }
+    .label{
+    	font-size: 25px;
+    	width: 30%;
+	    height: 30px; 
+	    border: 2px solid #ff69b4;
+	    margin-bottom: 10px;
+	    margin-left: 20px;
+	    text-align: center;
+	    border-radius: 3px;
+    }
 </style>
 </head>
 <%	RecensioneService rs = new RecensioneService(); %>
@@ -129,10 +140,10 @@
             <div class="logo-container">
                 <img src="img/2.ico" alt="Logo" class="logo-image">
             </div>
-            <h1>Recensioni della città</h1>
+            <h1>Recensioni città</h1>
         </div>
     </div>
-    <label>Citta:</label>
+    <div class="label">Ricerca la città:</div>
     <form action="ricerca_citta.jsp" method="post">
     	<select name="Citta">
     	<%		
@@ -158,17 +169,21 @@
     	Citta city = rs.select_Citta(nomeC);
     	//System.out.println(city.toString());
      	elencoRecensioni = rs.select_RecensioniCitta(city);
-     	     	
-        for(Recensione recensione : elencoRecensioni) {
-        	Utente u = recensione.getU();
-    	%>
-    	<div class="recensione">        	   	
-	    	<p>Utente:<%= recensione.getU().getNome()+" "%><%= recensione.getU().getCognome()%></p>
-	        <p>Descrizione:<%= recensione.getDesc()%></p>
-	        <p>Voto: <%= recensione.getVoto() %></p>
-	        <p>Data: <%= recensione.getData() %></p>                           
-        </div>
-    <%}%>
-    </div>
+     	if(elencoRecensioni != null){
+     		for(Recensione recensione : elencoRecensioni) {
+            	Utente u = recensione.getU();
+        	%>
+        	<div class="recensione">        	   	
+    	    	<p>Utente: <%= recensione.getU().getNome()+" "%><%= recensione.getU().getCognome()%></p>
+    	        <p>Descrizione: <%= recensione.getDesc()%></p>
+    	        <p>Voto: <%= recensione.getVoto() %></p>
+    	        <p>Data: <%= recensione.getData() %></p>                           
+            </div>
+            <%}%>     
+        <%}
+        else { %>
+        	<div class="error-message">Nessuna recensione trovata per questa città.</div>
+			</div>
+		<% } %>
 </body>
 </html>

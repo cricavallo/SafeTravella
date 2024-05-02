@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Recensioni Account</title>
+<title>Recensioni account</title>
 <link rel="icon" type="image/x-icon" href="img/logo.ico">
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap">
@@ -107,12 +107,11 @@
      	RecensioneService rs = new RecensioneService(); 
      	ElencoRecensioni elencoRecensioni = null;
      	elencoRecensioni = rs.Select_RecensioniUtente(u); 
-     	//System.out.println(elencoRecensioni.toString());
      	     	
         for(Recensione recensione : elencoRecensioni) {
     	%>
     	<div class="recensione">        	   	
-	                <p>Citta':<%=" "+recensione.getC().getNome()%></p>
+	                <h2>Citta':<%=" "+recensione.getC().getNome()%></h2>
 	                <p>Descrizione:<%=" "+recensione.getDesc() %></p>
 	                <p>Voto: <%=" "+recensione.getVoto() %></p>
 	                <p>Data: <%=" "+recensione.getData() %></p>                              
