@@ -1,6 +1,29 @@
+/* Stile della recensione */
+/*assicura che le recensioni vengano visualizzate in quadrati uno dopo l'altro*/
+
+.recensione {
+    width: calc(33.33% - 20px); /* Larghezza di una colonna meno il margine */
+    background-color: lightpink; 
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box; /* padding e il margine non aumentano la larghezza */
+}
+
+/* adatta le dimensioni delle recensioni*/
+@media screen and (min-width: 768px) {
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .recensione {
+        width: calc(33.33% - 20px);
+    }
+}
+
 /* Stile di base del bottone */
 .btn {
-    display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -11,6 +34,7 @@
     background-color: #4CAF50; 
     color: white; 
 }
+
 
 /* Stile del bottone al passaggio del mouse */
 .btn:hover {

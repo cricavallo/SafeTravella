@@ -81,7 +81,6 @@
 <div class="header-container">
     <nav class="button-container">
         <button onclick="location.href='home.jsp'">Home</button>
-        <button onclick="location.href='modifica_account.jsp'">Modifica account</button>
     	<button onclick="location.href='logout.jsp'">Logout</button>
     </nav>
 </div>

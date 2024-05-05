@@ -37,45 +37,57 @@
 	}
 	
 	.recensione {
+	 	position: relative;
 	    width: calc(33.33% - 20px);
 	    background-color: lightpink; 
 	    border-radius: 10px;
 	    padding: 20px;
 	    margin-bottom: 20px;
-	    box-sizing: border-box; /* Assicura che il padding e il margine non aumentino la larghezza */
+	    box-sizing: border-box; /* il padding e il margine non aumentano la larghezza */
 	    margin-left: 20px;
 	    
 	}
 	
-	/* Media query per schermi di dimensioni medie */
+	/* per schermi con dimensioni medie */
 	@media (max-width: 992px) {
 	    .recensione {
 	        width: calc(50% - 20px);
 	    }
 	}
 	
-	/* Media query per schermi di dimensioni piccole */
+	/* dimensioni piccole */
 	@media (max-width: 600px) {
 	    .recensione {
 	        width: calc(100% - 20px);
 	    }
 	}
-     .recensione h2 {	/si preoccupa dell'intestazione h2'/
-	    color: black; 
-     }
-     .recensione p {	/testo della recensione/
+    .recensione h2 {	/*intestazione h2'*/
+	    color: mediumvioletred; 
+    }
+    .recensione p {	/*testo della recensione*/
         color: black; 
         font-size: 18px;
-     }
+    }
+    .voto {
+	    position: absolute; /* posizionamento assoluto per il voto */
+	    top: 10px; 
+	    right: 10px; 
+	    background-color: lightpink; /* Colore di sfondo del voto */
+	    color: mediumvioletred; /* Colore testo del voto */
+	    font-size: 23px;
+	    font-weight: bold;
+	    padding: 5px 10px; /* Spaziatura interna */
+	    border-radius: 5px; /* Bordi arrotondati */
+	}
     img {
         width: 100%; /* 100% della larghezza del suo contenitore*/ 
-        height: auto; 	/adatta automaticamente l'altezza in proporzione al contenitore/
+        height: auto; 	
     	border-radius: 110px;
     }
     .logo-container {
-	    position: absolute; /* Imposta il posizionamento assoluto per il logo */
-        top: 0; /* Posiziona il logo in alto */
-        left: 0; /* Posiziona il logo a sinistra */
+	    position: absolute; 
+        top: 0; 
+        left: 0; 
         width: 150px;
         height: 150px;
         border-radius: 10px;
@@ -91,6 +103,7 @@
         align-items: center;
         justify-content: center; /* Centra il contenuto orizzontalmente */
     }
+
 </style>
 </head>
 <body>

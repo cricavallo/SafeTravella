@@ -18,7 +18,7 @@
 <style>
     
     select {
-        width: calc(30% - 12px);
+        width: calc(30%);
         padding: 8px;
         margin-bottom: 10px;
         border-radius: 3px;
@@ -67,45 +67,57 @@
 	}
 	
 	.recensione {
+	 	position: relative;
 	    width: calc(33.33% - 20px);
 	    background-color: lightpink; 
 	    border-radius: 10px;
 	    padding: 20px;
 	    margin-bottom: 20px;
-	    box-sizing: border-box; /* Assicura che il padding e il margine non aumentino la larghezza */
+	    box-sizing: border-box; /* il padding e il margine non aumentano la larghezza */
 	    margin-left: 20px;
 	    
 	}
 	
-	/* Media query per schermi di dimensioni medie */
+	/* per schermi con dimensioni medie */
 	@media (max-width: 992px) {
 	    .recensione {
 	        width: calc(50% - 20px);
 	    }
 	}
 	
-	/* Media query per schermi di dimensioni piccole */
+	/* dimensioni piccole */
 	@media (max-width: 600px) {
 	    .recensione {
 	        width: calc(100% - 20px);
 	    }
 	}
-     .recensione h2 {	
-	    color: black; 
-     }
-     .recensione p {	
+    .recensione h2 {	/*intestazione h2*/
+	    color: mediumvioletred; 
+    }
+    .recensione p {	/*testo della recensione*/
         color: black; 
         font-size: 18px;
-     }
+    }
+    .voto {
+	    position: absolute; /* posizionamento assoluto per il voto */
+	    top: 10px; 
+	    right: 10px; 
+	    background-color: lightpink; /* Colore di sfondo del voto */
+	    color: mediumvioletred; /* Colore testo del voto */
+	    font-size: 23px;
+	    font-weight: bold;
+	    padding: 5px 10px; /* Spaziatura interna */
+	    border-radius: 5px; /* Bordi arrotondati */
+	}
     img {
         width: 100%; /* 100% della larghezza del suo contenitore*/ 
         height: auto; 	
     	border-radius: 110px;
     }
     .logo-container {
-	    position: absolute; /* Imposta il posizionamento assoluto per il logo */
-        top: 0; /* Posiziona il logo in alto */
-        left: 0; /* Posiziona il logo a sinistra */
+	    position: absolute; 
+        top: 0; 
+        left: 0; 
         width: 150px;
         height: 150px;
         border-radius: 10px;
@@ -120,6 +132,12 @@
         display: flex;
         align-items: center;
         justify-content: center; /* Centra il contenuto orizzontalmente */
+    }
+    .error-message {
+        color: red;
+        font-size: 18px;
+        text-align: center;
+        margin-top: 20px;
     }
     .label{
     	font-size: 25px;
@@ -165,7 +183,6 @@
      <% 
      	ElencoRecensioni elencoRecensioni = null;
      	String nomeC = request.getParameter("Citta");
-    	System.out.println(nomeC);
     	Citta city = rs.select_Citta(nomeC);
     	//System.out.println(city.toString());
      	elencoRecensioni = rs.select_RecensioniCitta(city);
@@ -174,16 +191,17 @@
             	Utente u = recensione.getU();
         	%>
         	<div class="recensione">        	   	
-    	    	<p>Utente: <%= recensione.getU().getNome()+" "%><%= recensione.getU().getCognome()%></p>
+    	    	<h2>Utente: <%= recensione.getU().getNome()+" "%><%= recensione.getU().getCognome()%>, <%= city.getNome()%></h2>  
     	        <p>Descrizione: <%= recensione.getDesc()%></p>
     	        <p>Voto: <%= recensione.getVoto() %></p>
     	        <p>Data: <%= recensione.getData() %></p>                           
             </div>
             <%}%>     
         <%}
-        else { %>
-        	<div class="error-message">Nessuna recensione trovata per questa città.</div>
-			</div>
-		<% } %>
+        else { 
+        	%>
+        	<div class="error-message">Nessuna recensione trovata.</div>
+        <%}%>
+   </div>
 </body>
 </html>

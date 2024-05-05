@@ -59,16 +59,16 @@
 	        width: calc(100% - 20px);
 	    }
 	}
-     .recensione h2 {	/si preoccupa dell'intestazione h2'/
-	    color: black; 
+     .recensione h2 {	
+	    color: mediumvioletred; 
      }
-     .recensione p {	/testo della recensione/
+     .recensione p {	
         color: black; 
         font-size: 18px;
      }
     img {
         width: 100%; /* 100% della larghezza del suo contenitore*/ 
-        height: auto; 	/adatta automaticamente l'altezza in proporzione al contenitore/
+        height: auto; 	
     	border-radius: 110px;
     }
     .logo-container {

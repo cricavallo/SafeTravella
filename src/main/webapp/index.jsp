@@ -12,6 +12,7 @@
 <style>
 
     body {
+    	background-color: white;
         font-family: Arial, sans-serif; 
         text-align: center; 
         margin-top: 100px; /* Spazio sopra il form */
@@ -20,8 +21,8 @@
     .btn {
         font-family: Arial, sans-serif; 
         font-size: 14px; 
-        background-color: #007bff; 
-        color: #fff; 
+        background-color: pink; /*colore del bottone*/
+        color: black; /*colore del testo*/
         border: none; 
         padding: 10px 20px; /* Spaziatura all'interno del pulsante */
         cursor: pointer; /* Cambia il cursore quando si passa sopra */
@@ -47,14 +48,15 @@
     .register-btn {
         font-family: Arial, sans-serif;
         font-size: 14px;
-        background-color: #28a745; /* Colore verde */
-        color: #fff;
+        background-color: purple; 
+        color: white;
         border: none;
         padding: 10px 20px;
         cursor: pointer;
         border-radius: 5px;
         text-decoration: none; /* Rimuove la sottolineatura */
     }
+
 </style>
 </head>
 <body>
