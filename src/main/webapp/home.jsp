@@ -61,34 +61,41 @@
         padding: 20px;
         text-align: left;
     }
-    
+ 
     #accountButton {
-    	background-color: rgb(168, 168, 255); 
+    	background-color: #b000b0;
+    	border: 2px solid purple; 
+    	border-radius: 5px;
     	color: #fff; 
-    	border-radius: 5px; 
-    	border: none; 
-    	padding: 10px 20px; 
-    	font-size: 16px; 
+    	padding: 12px 24px;
+    	font-size: 18px; 
     	position: absolute; 
     	top: 70px; /* Distanza dal top */
     	right: 60px; /* Distanza dalla destra */
     	cursor: pointer;
 	}
+	   #accountButton:hover {
+    	background-color: purple;
+    }
 	
     .button-container {
         margin-top: 20px;
         text-align: center;
     }
     .button-container button {
-        margin: 5px;
-        padding: 10px 20px;
-        background-color: rgb(255, 128, 192);
-        border: none;
-        border-radius: 5px;
-        color: #fff;
-        font-size: 16px;
-        cursor: pointer;
-    }
+    	margin: 5px;
+    	padding: 12px 24px; 
+    	background-color: rgb(255, 159, 207);
+    	border: 2px solid rgb(255, 128, 192); 
+    	border-radius: 5px;
+    	color: #fff;
+    	font-size: 18px;
+    	cursor: pointer;
+	}
+
+	.button-container button:hover {
+    	background-color: rgb(255, 128, 192);
+	}
     .panel {
     	background-color: rgb(255, 255, 255);
     	padding: 5px 5px; /* Riduzione del padding */
@@ -128,7 +135,7 @@
     
     <% //accesso alla base dati per ricercare le recensioni %>
     
-    <img src="img/img3.jpg" width="1000" height="600">
+    <img src="img/collage3.jpg" width="1000" height="600">
     
 <% } else {
     response.sendRedirect("index.jsp");

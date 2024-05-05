@@ -3,7 +3,7 @@
 
 .recensione {
     width: calc(33.33% - 20px); /* Larghezza di una colonna meno il margine */
-    background-color: lightpink; 
+    background-color: lightpink;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
