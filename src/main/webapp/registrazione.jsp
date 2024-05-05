@@ -14,19 +14,22 @@
     body {
         font-family: Arial, sans-serif; 
         text-align: center; 
-        margin-top: 100px; /* Spazio sopra il form */
     }
 
     /* Stile per i bottoni */
     .btn {
         font-family: Arial, sans-serif; 
-        font-size: 14px; 
-        background-color: #007bff; 
+        font-size: 16px; 
+        background-color: #b000b0;
+    	border: 2px solid purple; 
         color: #fff; 
-        border: none; 
         padding: 10px 20px; /* Spaziatura all'interno del pulsante */
         cursor: pointer; /* Cambia il cursore quando si passa sopra */
         border-radius: 5px; /* Bordo arrotondato */
+    }
+    
+    .btn:hover{
+    	background-color: purple;
     }
 	
     input{
@@ -46,6 +49,10 @@
     /* Stile per messaggio di conferma */
     .success-message {
         color: green;
+    }
+    h2{
+    	margin-top: 40px;
+    
     }
 </style>
 </head>

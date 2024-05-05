@@ -37,13 +37,20 @@
     	width: 100%;
     	height: 100%;
 	}
+    .header {
+	    border-radius: 5px;
+	    margin-bottom: 20px;
+    }
+    .header h2 {
+        margin: 0;
+    }
     h2 {
         text-align: left;
     }
     
     label {
         font-weight: bold;
-        margin-bottom: 5px;
+        margin-bottom: 7px;
         font-size: 18px;
     }
     
@@ -55,6 +62,7 @@
         margin-bottom: 10px;
         border-radius: 3px;
         border: 1px solid #ccc;
+        font-size: 16px;
     }
     
     textarea {
@@ -85,9 +93,10 @@
 <%	RecensioneService rs = new RecensioneService(); %>
 <img src="img/back2.jpg">
 <div class="container">
-    <h2>Aggiungi recensione</h2>
-    <h3></h3>
-	<label>Città:</label>
+	<div class="header">
+    	<h2>Aggiungi recensione</h2>
+    </div>
+	<label>Citta':</label>
     <form action="aggiungi_recensione.jsp" method="post">
     	<select name="Citta">
     	<%		
@@ -130,7 +139,7 @@ if ("POST".equals(request.getMethod())) {
     	dataViaggio = LocalDate.parse(request.getParameter("data"));
     	dataV = String.valueOf(dataViaggio);
 	} catch (Exception e) {
-		out.println("<h3 class='error-message'>Errore nella data di nascita!</h3>");
+		out.println("Errore nella data di nascita!");
     	out.println("</body></html>");
     	return;
 	}

@@ -18,33 +18,31 @@
 <style>
     
     select {
-        width: calc(30%);
-        padding: 8px;
-        margin-bottom: 10px;
-        border-radius: 3px;
-        border: 1px solid #ccc;
-        background-color: #f8f8f8; /* Colore di sfondo leggermente diverso */
-        font-size: 16px; /* Dimensione del testo */
-        color: #555; /* Colore del testo */
-        margin-left: 20px;
-    }
-
+    	width: calc(30%);
+    	padding: 8px;
+    	border-radius: 3px;
+    	border: 1px solid #ccc;
+    	background-color: #f8f8f8; /* Colore di sfondo leggermente diverso */
+    	font-size: 18px; /* Dimensione del testo */
+    	color: black; /* Colore del testo */
+    	margin-left: 20px;
+	}
     /* Aggiungi stile al bottone di submit */
     input[type="submit"] {
         width: calc(20% - 12px);
         padding: 10px;
         margin-top: 10px; /* Aggiungi margine superiore */
-        border: none;
         border-radius: 3px;
-        background-color: hotpink; /* Colore di sfondo */
+        background-color: rgb(255, 159, 207);
+    	border: 2px solid rgb(255, 128, 192); 
         color: white; /* Colore del testo */
-        font-size: 16px; /* Dimensione del testo */
+        font-size: 18px; /* Dimensione del testo */
         cursor: pointer; /* Cambia il cursore al passaggio */
     }
 
     /* Aggiungi stile al bottone di submit al passaggio del mouse */
     input[type="submit"]:hover {
-        background-color: #ff69b4; /* Cambia colore al passaggio del mouse */
+        background-color: rgb(255, 128, 192); /* Cambia colore al passaggio del mouse */
     }
 	body {
         background-color: white;
@@ -158,10 +156,10 @@
             <div class="logo-container">
                 <img src="img/2.ico" alt="Logo" class="logo-image">
             </div>
-            <h1>Recensioni città</h1>
+            <h1>Recensioni citta'</h1>
         </div>
     </div>
-    <div class="label">Ricerca la città:</div>
+    <div class="label">Ricerca la citta':</div>
     <form action="ricerca_citta.jsp" method="post">
     	<select name="Citta">
     	<%		
@@ -184,7 +182,6 @@
      	ElencoRecensioni elencoRecensioni = null;
      	String nomeC = request.getParameter("Citta");
     	Citta city = rs.select_Citta(nomeC);
-    	//System.out.println(city.toString());
      	elencoRecensioni = rs.select_RecensioniCitta(city);
      	if(elencoRecensioni != null){
      		for(Recensione recensione : elencoRecensioni) {
@@ -202,6 +199,6 @@
         	%>
         	<div class="error-message">Nessuna recensione trovata.</div>
         <%}%>
-   </div>
+	</div>
 </body>
 </html>

@@ -17,7 +17,6 @@
     	background-color: white;
         font-family: Arial, sans-serif; 
         text-align: center; 
-        margin-top: 100px; /* Spazio sopra il form */
     }
 
     .btn {
@@ -34,7 +33,14 @@
     .btn:hover{
     	background-color: rgb(255, 128, 192);
     }
+    h2{
+    	margin-top: 80px;
+    	font-size: 25px;
+    }
     
+    h3{
+    	font-size: 20px;
+    }
  
     input[type="text"],
     input[type="password"] {
@@ -66,7 +72,7 @@
     	background-color: purple;
     }
     label{
-    	font-size: 16px;
+    	font-size: 18px;
     }
     .show-btn {
         font-family: Arial, sans-serif;
