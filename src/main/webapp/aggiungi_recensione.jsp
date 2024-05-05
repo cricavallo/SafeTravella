@@ -44,6 +44,7 @@
     label {
         font-weight: bold;
         margin-bottom: 5px;
+        font-size: 18px;
     }
     
     input[type="text"],
@@ -66,17 +67,17 @@
     }
     
     input[type="submit"] {
-        background-color: #007bff;
+        background-color: #b000b0;
+    	border: 2px solid purple; 
         color: #fff;
         padding: 10px 20px;
-        border: none;
         border-radius: 3px;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 18px;
     }
     
     input[type="submit"]:hover {
-        background-color: #0056b3;
+        background-color: purple;
     }
 </style>
 </head>
