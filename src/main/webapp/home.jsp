@@ -74,7 +74,7 @@
     	right: 60px; /* Distanza dalla destra */
     	cursor: pointer;
 	}
-	   #accountButton:hover {
+	#accountButton:hover {
     	background-color: purple;
     }
 	

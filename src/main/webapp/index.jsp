@@ -9,6 +9,8 @@
 <meta charset="ISO-8859-1">
 <title>SafeTravella</title>
 <link rel="icon" type="image/x-icon" href="img/logo.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
 <style>
 
     body {
@@ -20,20 +22,24 @@
 
     .btn {
         font-family: Arial, sans-serif; 
-        font-size: 14px; 
-        background-color: pink; /*colore del bottone*/
+        font-size: 16px; 
+        background-color: rgb(255, 159, 207);
+    	border: 2px solid rgb(255, 128, 192); 
         color: black; /*colore del testo*/
-        border: none; 
         padding: 10px 20px; /* Spaziatura all'interno del pulsante */
         cursor: pointer; /* Cambia il cursore quando si passa sopra */
         border-radius: 5px; /* Bordo arrotondato */
     }
     
-
+    .btn:hover{
+    	background-color: rgb(255, 128, 192);
+    }
+    
+ 
     input[type="text"],
     input[type="password"] {
         font-family: Arial, sans-serif; /* Stessa famiglia di font usata per il testo */
-        font-size: 14px; /* Dimensione del testo */
+        font-size: 16px; /* Dimensione del testo */
         padding: 8px; /* Spaziatura all'interno dell'input */
         border-radius: 5px; /* Bordo arrotondato */
         border: 1px solid #ccc; /* Bordo grigio */
@@ -47,16 +53,40 @@
 
     .register-btn {
         font-family: Arial, sans-serif;
-        font-size: 14px;
-        background-color: purple; 
+        font-size: 16px;
+        background-color: #b000b0;
+    	border: 2px solid purple;
         color: white;
-        border: none;
         padding: 10px 20px;
         cursor: pointer;
         border-radius: 5px;
         text-decoration: none; /* Rimuove la sottolineatura */
     }
-
+    .register-btn:hover{
+    	background-color: purple;
+    }
+    label{
+    	font-size: 16px;
+    }
+    .show-btn {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        background-color: #fff;
+        color: black;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .show-btn:hover{
+        background-color: rgb(211, 211, 211);
+    }
+    .eye-icon {
+        position: absolute; /* Posizione assoluta per posizionare l'icona all'interno dell'input */
+        top: 50%; /* Posiziona l'icona verticalmente al centro */
+        right: 10px; /* Posiziona l'icona a 10px dalla destra */
+        transform: translateY(-50%); /* Centra verticalmente l'icona */
+        cursor: pointer; /* Cambia il cursore quando si passa sopra */
+    }
 </style>
 </head>
 <body>
@@ -71,10 +101,16 @@ if(n == null) {%>
         <label for="user">User:</label><br/>
         <input type="text" name="user"/><br/><br/>
         <label for="pwd">Password:</label><br/>
-        <input type="password" name="pwd"/><br/><br/>
-        <input type="submit" value="Login" class="btn"/><br/><br/>
-        <h4>Non sei ancora registrato?
-        </h4> <a href="registrazione.jsp" class="register-btn">Registrati</a>
+        <div style="position: relative;"> <!-- Contenitore per l'input della password e il pulsante Show -->
+            <input type="password" name="pwd" id="pwdInput"/>
+            <button type="button" class="show-btn" onclick="togglePasswordVisibility()">
+                <i class="far fa-eye"></i> 
+            </button>
+        </div>
+        <br/><br/>
+        <input type="submit" value="Login" class="btn"/><br/><br/> <!-- Spostato qui -->
+        <h4>Non sei ancora registrato?</h4> 
+        <a href="registrazione.jsp" class="register-btn">Registrati</a>
     </div>
 </form>
 
@@ -92,7 +128,20 @@ if(n == null) {%>
 }%>
 
 	<script>
-    	console.log("ciao");
-    </script>
+    function togglePasswordVisibility() {
+        var pwdInput = document.getElementById("pwdInput");
+        var eyeIcon = document.querySelector(".show-btn i");
+
+        if (pwdInput.type == "password") {
+            pwdInput.type = "text";
+            eyeIcon.classList.remove("fa-eye");
+            eyeIcon.classList.add("fa-eye-slash");
+        } else {
+            pwdInput.type = "password";
+            eyeIcon.classList.remove("fa-eye-slash");
+            eyeIcon.classList.add("fa-eye");
+        }
+    }
+</script>
 </body>
 </html>
