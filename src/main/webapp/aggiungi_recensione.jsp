@@ -55,7 +55,6 @@
     }
     
     input[type="text"],
-    input[type="number"],
     select {
         width: calc(100% - 12px);
         padding: 8px;
@@ -63,6 +62,14 @@
         border-radius: 3px;
         border: 1px solid #ccc;
         font-size: 16px;
+    }
+    input[type="number"]{
+    	padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        width: 10%;
     }
     
     textarea {

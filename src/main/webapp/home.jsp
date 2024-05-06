@@ -130,11 +130,12 @@
         	<button onclick="location.href='recensioni_account.jsp'">Le tue recensioni</button>
         </nav>
     <div class="panel">
+    	<br/><br/>
         <h2>Benvenuta <%=u.getNome()+" "+u.getCognome() %></h2>
     </div>
     
     <% //accesso alla base dati per ricercare le recensioni %>
-    
+    <br/><br/>
     <img src="img/collage3.jpg" width="1000" height="600">
     
 <% } else {

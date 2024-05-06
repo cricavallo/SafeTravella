@@ -24,7 +24,7 @@
         font-size: 16px; 
         background-color: rgb(255, 159, 207);
     	border: 2px solid rgb(255, 128, 192); 
-        color: black; /*colore del testo*/
+        color: white; /*colore del testo*/
         padding: 10px 20px; /* Spaziatura all'interno del pulsante */
         cursor: pointer; /* Cambia il cursore quando si passa sopra */
         border-radius: 5px; /* Bordo arrotondato */
@@ -74,6 +74,7 @@
     label{
     	font-size: 18px;
     }
+    
     .show-btn {
         font-family: Arial, sans-serif;
         font-size: 14px;
@@ -83,9 +84,11 @@
         cursor: pointer;
         border-radius: 5px;
     }
+    
     .show-btn:hover{
         background-color: rgb(211, 211, 211);
     }
+    
     .eye-icon {
         position: absolute; /* Posizione assoluta per posizionare l'icona all'interno dell'input */
         top: 50%; /* Posiziona l'icona verticalmente al centro */
